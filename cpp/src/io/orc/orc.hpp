@@ -47,6 +47,7 @@ struct PostScript {
   uint32_t compressionBlockSize{};     // the maximum size of each compression chunk
   std::vector<uint32_t> version;       // the version of the writer [major, minor]
   uint64_t metadataLength = 0;         // the length of the metadata section in bytes
+  uint32_t writerVersion = 6;          // the version of the CUDF writer
   std::string magic       = "";        // the fixed string "ORC"
 };
 
@@ -84,6 +85,7 @@ struct FileFooter {
   uint64_t numberOfRows = 0;               // the total number of rows in the file
   std::vector<ColStatsBlob> statistics;    // Column statistics blobs
   uint32_t rowIndexStride = 0;             // the maximum number of rows in each index entry
+  uint32_t writer = 5;                     // the id assigned by ORC to the writer of the CUDF impl
 };
 
 struct Stream {
